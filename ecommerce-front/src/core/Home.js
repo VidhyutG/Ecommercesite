@@ -35,7 +35,7 @@ const Home = () => {
   }, [])
 
   return (
-    <Layout title = "UniSell" description ="Home Page" className="containe-fluid">
+    <Layout title = "UniSell" description ="Welcome to our community" className="container-fluid">
     <h2 className="mb-4">New Arrivals</h2>
     <div className="row">
     {productsByArrival.map((product,i) => (<Card key={i} product={product}/>))}
