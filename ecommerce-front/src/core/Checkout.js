@@ -115,12 +115,12 @@ const Checkout = ({ products, setRun = f => f, run = undefined }) => {
             {data.clientToken !== null && products.length > 0 ? (
                 <div>
                     <div className="gorm-group mb-3">
-                        <label className="text-muted">Delivery address:</label>
+                        <label className="text-muted">Delivery method:</label>
                         <textarea
                             onChange={handleAddress}
                             className="form-control"
                             value={data.address}
-                            placeholder="Type your delivery address here..."
+                            placeholder="Meet in person, or if you want it shipped. type in your shipping address."
                         />
                     </div>
 

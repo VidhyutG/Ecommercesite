@@ -52,7 +52,7 @@ const Menu = ({history}) => (
    )}
 
    {isAuthenticated() && (<li className ="nav-item">
-    <span className="nav-link" style = {{cursor: 'pointer', color:'#ffffff'}} onClick={() => signout(() => {
+    <span className="nav-link" style = {{cursor: 'pointer', color:'#ffffff'}} onClick={() => signout(() => {localStorage.removeItem("cart")
       history.push('/')
     })}>Signout</span>
    </li>)}

@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react'
 import Layout from '../core/Layout'
 import {isAuthenticated} from '../auth'
-import {Link} from 'react-router-dom'
-import {createProduct, getCategories} from './apiAdmin'
+import {Link, Redirect} from 'react-router-dom'
+import {getProduct, getCategories, updateProduct} from './apiAdmin'
 
-const AddProduct = () => {
+const UpdateProduct = ({match}) => {
 
   const {user, token} = isAuthenticated();
   const [values, setValues] = useState({
@@ -38,12 +38,25 @@ const {
   formData
 } = values
 
-const init = () => {
+const init = (productId) => {
+  getProduct(productId).then(data => {
+    if(data.error){
+      setValues({...values, error: data.error})
+    } else {
+      setValues({...values, name: data.name, description: data.description, price: data.price, category: data.category._id,
+      shipping: data.shipping, quantity: data.quantity, formData: new FormData()})
+      initCategories()
+    }
+
+  })
+}
+
+const initCategories = () => {
   getCategories().then(data => {
     if(data.error){
       setValues({...values, error: data.error})
     } else{
-      setValues({...values, categories: data, formData: new FormData()})
+      setValues({categories: data, formData: new FormData()})
     }
   })
 }
@@ -51,7 +64,7 @@ const init = () => {
 
 
 useEffect(() => {
-  init()
+  init(match.params.productId)
 },[])
 
 const handleChange = name => event => {
@@ -64,13 +77,13 @@ const clickSubmit = event => {
   event.preventDefault()
   setValues({...values, error: '', loading:true})
 
-  createProduct(user._id, token, formData)
+  updateProduct(match.params.productId, user._id, token, formData)
   .then(data => {
     if(data.error){
       setValues({...values, error: data.error})
     } else {
       setValues({
-        ...values, name: '', description: '', photo: '', price: '', quantity: '', loading: false, createdProduct: data.name
+        ...values, name: '', description: '', photo: '', price: '', quantity: '', loading: false, error: false, redirectToProfile: true, createdProduct: data.name
       })
     }
   })
@@ -123,7 +136,7 @@ const newPostForm = () => (
   <input onChange={handleChange('quantity')} type="number" className="form-control" value={quantity}/>
   </div>
 
-  <button className = "btn btn-outline-primary">Create Product</button>
+  <button className = "btn btn-outline-primary">Update</button>
   </form>
 )
 
@@ -135,7 +148,7 @@ const showError = () => (
 
 const showSuccess = () => (
   <div className="alert alert-info" style={{display: createdProduct ? '' : 'none'}}>
-<h2>{`${createdProduct}`} is created successfully! </h2>
+<h2>{`${createdProduct}`} has been updated. </h2>
   </div>
 )
 
@@ -143,11 +156,19 @@ const showLoading = () => (
   loading && (<div className="alert alert-success"><h2>Loading...</h2></div>)
 )
 
+const redirectUser = () => {
+  if(redirectToProfile){
+    if(!error){
+      return <Redirect to="/" />
+    }
+  }
+}
+
 
   return (
     <Layout
-      title="Your Listing"
-      description={`Hello ${user.name}, ready to make some $$?`}
+      title="Your listing "
+      description={`Hello ${user.name}, Time to fix stuff...`}
     >
       <div className="row">
         <div className="col-md-8 offset-md-2">
@@ -155,6 +176,7 @@ const showLoading = () => (
         {showSuccess()}
         {showError()}
         {newPostForm()}
+        {redirectUser()}
         </div>
       </div>
     </Layout>
@@ -162,4 +184,4 @@ const showLoading = () => (
 
 }
 
-export default AddProduct
+export default UpdateProduct
