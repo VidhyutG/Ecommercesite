@@ -15,6 +15,7 @@ const UpdateProduct = ({match}) => {
     category: '',
     shipping: '',
     quantity: '',
+    offeremail: '',
     photo: '',
     loading: false,
     error: '',
@@ -30,6 +31,7 @@ const {
   categories,
   category,
   shipping,
+  offeremail,
   quantity,
   loading,
   error,
@@ -44,7 +46,7 @@ const init = (productId) => {
       setValues({...values, error: data.error})
     } else {
       setValues({...values, name: data.name, description: data.description, price: data.price, category: data.category._id,
-      shipping: data.shipping, quantity: data.quantity, formData: new FormData()})
+      shipping: data.shipping, quantity: data.quantity, offeremail: data.offeremail, formData: new FormData()})
       initCategories()
     }
 
@@ -83,7 +85,7 @@ const clickSubmit = event => {
       setValues({...values, error: data.error})
     } else {
       setValues({
-        ...values, name: '', description: '', photo: '', price: '', quantity: '', loading: false, error: false, redirectToProfile: true, createdProduct: data.name
+        ...values, name: '', description: '', photo: '', price: '', quantity: '', offeremail: '', loading: false, error: false, redirectToProfile: true, createdProduct: data.name
       })
     }
   })
@@ -107,6 +109,11 @@ const newPostForm = () => (
   <div className="form-group">
   <label className = "text-muted">Description</label>
   <textarea onChange={handleChange('description')} className="form-control" value={description}/>
+  </div>
+
+  <div className="form-group">
+  <label className = "text-muted">If you would like to take offers</label>
+  <input onChange={handleChange('offeremail')} className="form-control" value={offeremail} placeholder="type your email here..."/>
   </div>
 
   <div className="form-group">

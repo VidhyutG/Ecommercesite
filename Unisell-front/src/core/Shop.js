@@ -5,6 +5,7 @@ import {getCategories, getFilteredProducts} from './apiCore'
 import Checkbox from './Checkbox'
 import RadioBox from './RadioBox'
 import {prices} from './fixedPrices'
+import Search from './Search'
 
 const Shop = () => {
   const [myFilters, setMyFilters] = useState({
@@ -97,7 +98,7 @@ const Shop = () => {
 
   return (
     <Layout title = "Shop Page" description ="Search and Find TextBooks of your choice" className="container-fluid">
-
+    <Search />
     <div className="row">
       <div className="col-4">
       <h4>Filter by categories</h4>

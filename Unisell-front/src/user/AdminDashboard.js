@@ -13,9 +13,10 @@ const adminLinks = () => {
     <h4 className="card-header">Admin Links</h4>
     <ul className ="list-group">
     <li className ="list-group-item"><Link className="nav-link" to="/create/category">Create Category</Link></li>
-    <li className ="list-group-item"><Link className="nav-link" to="/create/product">Create Product</Link></li>
+    <li className ="list-group-item"><Link className="nav-link" to="/create/product">Create Listing</Link></li>
     <li className ="list-group-item"><Link className="nav-link" to="/admin/orders">View Orders</Link></li>
     <li className ="list-group-item"><Link className="nav-link" to="/admin/products">Manage Products</Link></li>
+    <li className ="list-group-item"><Link className="nav-link" to="/user/dashboard">Buyer Dashboard</Link></li>
     </ul>
     </div>
   )
@@ -37,8 +38,8 @@ const adminInfo = () => {
 
   return (
     <Layout
-      title="Dashboard"
-      description={`Hello ${name}`}
+      title="Seller Dashboard"
+      description="Manage your products and your orders here"
       className="container-fluid"
     >
       <div className="row">

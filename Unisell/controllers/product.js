@@ -35,8 +35,8 @@ exports.create = (req, res) => {
       });
     }
 //check
-const {name, description, price, category, quantity, shipping} = fields
-if(!name || !description || !price ||!category || !quantity || !shipping){
+const {name, description, price, category, quantity, shipping, offeremail} = fields
+if(!name || !description || !price ||!category || !quantity || !shipping || !offeremail){
   return res.status(400).json({
     error: "all fields are required"
   });
@@ -74,7 +74,7 @@ exports.remove = (req, res) => {
       });
       }
       res.json({
-        message : "Product deleted successfully"
+        message : "Book deleted successfully"
       })
   })
 }
@@ -126,7 +126,7 @@ exports.list = (req, res) => {
   .exec((err,products) => {
     if(err){
       return res.status(400).json({
-        error : "Products not found"
+        error : "Books not found"
       })
     }
     res.json(products)
@@ -142,7 +142,7 @@ exports.listRelated = (req, res) => {
   .exec((err, products) => {
     if(err){
       return res.status(400).json({
-        error : "Products not found"
+        error : "Books not found"
       })
     }
     res.json(products)
@@ -243,7 +243,7 @@ exports.decreaseQuantity = (req,res,next) => {
   Product.bulkWrite(bulkOps, {}, (error, products) => {
     if(error){
       return res.status(400).json({
-        error: 'Could not update product'
+        error: 'Could not update book'
       })
     }
     next()

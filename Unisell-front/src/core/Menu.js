@@ -23,10 +23,6 @@ const Menu = ({history}) => (
     <Link className="nav-link" style = {isActive(history, '/shop')} to="/shop">Shop</Link>
    </li>
 
-   <li className ="nav-item">
-    <Link className="nav-link" style = {isActive(history, '/cart')} to="/cart">Books<sup><small className="cart-badge">{itemTotal()}</small></sup></Link>
-   </li>
-
    {isAuthenticated() && isAuthenticated().user.role === 0 && (
      <li className ="nav-item">
       <Link className="nav-link" style = {isActive(history, '/user/dashboard')} to="/user/dashboard">Dashboard</Link>
@@ -50,6 +46,10 @@ const Menu = ({history}) => (
      </li>
      </Fragment>
    )}
+
+   <li className ="nav-item">
+    <Link className="nav-link" style = {isActive(history, '/cart')} to="/cart">Bookshelf<sup><small className="cart-badge">{itemTotal()}</small></sup></Link>
+   </li>
 
    {isAuthenticated() && (<li className ="nav-item">
     <span className="nav-link" style = {{cursor: 'pointer', color:'#ffffff'}} onClick={() => signout(() => {localStorage.removeItem("cart")

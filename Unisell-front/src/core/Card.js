@@ -23,7 +23,7 @@ const Card = ({
     return (
       showViewProductButton && (
         <Link to={`/product/${product._id}`} className="mr-2">
-          <button className="btn btn-outline-primary mt-2 mb-2 card-btn-1">View Product</button>
+          <button className="btn btn-outline-primary mt-2 mb-2 card-btn-1">View Book</button>
         </Link>
       )
     );
@@ -44,7 +44,7 @@ const addToCart = () => {
     return (
       showAddToCartButton && (
         <button onClick={addToCart} className="btn btn-outline-warning mt-2 mb-2 card-btn-1  ">
-          Add to cart
+          Add to bookshelf
         </button>
       )
     );
@@ -101,8 +101,9 @@ const addToCart = () => {
       <div className="card-body">
         {shouldRedirect(redirect)}
         <ShowImage item={product} url="product" />
-        <p className="card-p  mt-2">{product.description.substring(0, 100)} </p>
-        <p className="card-p black-10">$ {product.price}</p>
+        <p className="card-p  mt-2">{product.description.substring(0, 1000)} </p>
+        <p className="card-p black-10">${product.price}</p>
+        <p className="card-p black-10">Taking offers: {product.offeremail}</p>
         <p className="black-9">Category: {product.category && product.category.name}</p>
         <p className="black-8">Added on {moment(product.createdAt).fromNow()}</p>
         {showStock(product.quantity)}

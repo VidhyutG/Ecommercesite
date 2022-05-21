@@ -37,6 +37,7 @@ const userLinks = () => {
     <ul className ="list-group">
     <li className ="list-group-item"><Link className="nav-link" to="/cart">My Cart</Link></li>
     <li className ="list-group-item"><Link className="nav-link" to={`/profile/${_id}`}>Update Profile</Link></li>
+    <li className ="list-group-item"><Link className="nav-link" to="/admin/dashboard">Seller Dashboard</Link></li>
     </ul>
 
 
@@ -94,8 +95,8 @@ const purchaseHistory = (history) => {
 
   return (
     <Layout
-      title="Dashboard"
-      description={`Hello ${name}`}
+      title="Buyer Dashboard"
+      description="Manage your profile here"
       className="container-fluid"
     >
       <div className="row">

@@ -14,6 +14,7 @@ const AddProduct = () => {
     categories: [],
     category: '',
     shipping: '',
+    offeremail:'',
     quantity: '',
     photo: '',
     loading: false,
@@ -30,6 +31,7 @@ const {
   categories,
   category,
   shipping,
+  offeremail,
   quantity,
   loading,
   error,
@@ -70,7 +72,7 @@ const clickSubmit = event => {
       setValues({...values, error: data.error})
     } else {
       setValues({
-        ...values, name: '', description: '', photo: '', price: '', quantity: '', loading: false, createdProduct: data.name
+        ...values, name: '', description: '', photo: '', price: '', quantity: '', offeremail: '', loading: false, createdProduct: data.name
       })
     }
   })
@@ -93,7 +95,12 @@ const newPostForm = () => (
 
   <div className="form-group">
   <label className = "text-muted">Description</label>
-  <textarea onChange={handleChange('description')} className="form-control" value={description}/>
+  <textarea onChange={handleChange('description')} className="form-control" value={description} placeholder="What condition is it in? What class did you use it for?"/>
+  </div>
+
+  <div className="form-group">
+  <label className = "text-muted">Would you like to take offers</label>
+  <input onChange={handleChange('offeremail')} className="form-control" value={offeremail} placeholder="Type your Email or Type 'No'" />
   </div>
 
   <div className="form-group">
