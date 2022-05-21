@@ -51,7 +51,7 @@ const Signup = () => {
             </div>
 
             <div className="form-group">
-                <label className="text-muted">Email</label>
+                <label className="text-muted">Student Email</label>
                 <input onChange={handleChange('email')} type="email" className="form-control" value={email} />
             </div>
 

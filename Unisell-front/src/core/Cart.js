@@ -41,7 +41,7 @@ const Cart = () => {
 
     return (
         <Layout
-            title="Book Shelf"
+            title="Bookshelf"
             description="Manage your books here. Add remove checkout or continue shopping."
             className="container-fluid"
         >
